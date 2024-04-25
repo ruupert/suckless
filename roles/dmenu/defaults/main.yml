@@ -1,0 +1,5 @@
+---
+dmenu_recompile: false
+dmenu_repo: "https://git.suckless.org/dmenu"
+dmenu_branch: "master"
+dmenu_patches: []

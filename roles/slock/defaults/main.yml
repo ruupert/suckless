@@ -1,0 +1,6 @@
+---
+slock_recompile: false
+slock_name: "slock"
+slock_repo: "https://git.suckless.org/slock"
+slock_branch: "master"
+slock_patches: []

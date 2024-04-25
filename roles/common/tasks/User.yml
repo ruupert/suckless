@@ -1,0 +1,21 @@
+---
+- name: "User | Build | Group"
+  ansible.builtin.user:
+    name: "{{ suckless_build_group }}"
+    state: present
+
+- name: "User | Build | User"
+  ansible.builtin.user:
+    name: "{{ suckless_build_user }}"
+    home: "{{ suckless_build_home }}"
+    group: "{{ suckless_build_user }}"
+    create_home: true
+    state: "present"
+    shell: "/sbin/nologin"
+
+- name: "User | Build | Home dir permissions"
+  ansible.builtin.file:
+    path: "{{ suckless_build_home }}"
+    mode: "0700"
+    owner: "{{ suckless_build_user }}"
+    group: "{{ suckless_build_group }}"

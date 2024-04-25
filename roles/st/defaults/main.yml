@@ -1,0 +1,10 @@
+---
+st_recompile: false
+st_repo: "https://git.suckless.org/st"
+st_branch: "0.8.5"
+st_patches:
+      - "files/st/st-xresources-20200604-9ba7ecf.diff"
+      - "files/st/st-scrollback-0.8.5.diff"
+      - "files/st/st-scrollback-mouse-20191024-a2c479c.diff"
+      - "files/st/st-scrollback-mouse-altscreen-20200416-5703aa0.diff"
+      - "files/st/st-clipboard-0.8.3.diff"

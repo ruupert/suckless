@@ -1,0 +1,5 @@
+---
+surf_recompile: false
+surf_repo: "https://git.suckless.org/surf"
+surf_branch: "surf-webkit2"
+surf_patches: []

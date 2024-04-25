@@ -1,0 +1,189 @@
+- name: "Compile | {{ suckless_build_name }}"
+  block:
+    - name: "Compile | Stat repo dir - {{ suckless_build_path }}" # noqa name[template]
+      ansible.builtin.stat:
+        path: "{{ suckless_build_path }}"
+      register: suckless_repo_dir
+
+    - name: "Compile | Git clone - {{ suckless_build_name }}" # noqa: no-handler
+      ansible.builtin.git:
+        repo: "{{ suckless_build_repo }}"
+        version: "{{ suckless_build_branch }}"
+        force: false
+        dest: "{{ suckless_build_path }}"
+      register: suckless_git_clone_reg
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: not suckless_repo_dir.stat.exists
+
+    - name: "Compile | Recompile Git clone - {{ suckless_build_name }}" # noqa: no-handler
+      ansible.builtin.git:
+        repo: "{{ suckless_build_repo }}"
+        version: "{{ suckless_build_branch }}"
+        force: true
+        dest: "{{ suckless_build_path }}"
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: suckless_build_recompile
+
+    - name: "Compile | Make target: clean - {{ suckless_build_name }}" # noqa: no-handler
+      community.general.make:
+        target: "clean"
+        chdir: "{{ suckless_build_path }}"
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: suckless_build_recompile or suckless_git_clone_reg.changed
+
+    - name: "Compile | Patch: {{ suckless_build_name }}" # noqa: no-handler
+      ansible.posix.patch:
+        src: "{{ itemy }}"
+        basedir: "{{ suckless_build_path }}"
+        strip: 1
+      loop_control:
+        loop_var: itemy
+      with_items: "{{ suckless_build_patches }}"
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when:
+        - suckless_build_patches | length > 0
+        - suckless_build_recompile or suckless_git_clone_reg.changed
+    - name: "Compile | Check if {{ suckless_build_path }}/config.mk exists" # noqa name[template]
+      ansible.builtin.stat:
+        path: "{{ suckless_build_path }}/config.mk"
+      register: suckless_build_config_mk_reg
+
+    - name: "Compile | Config.mk replaces"
+      when:
+        - suckless_build_config_mk_reg.stat.exists
+        - (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+      block:
+        - name: "Compile | Replace: X11INC for {{ suckless_build_name }}" # noqa: no-handler
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/config.mk"
+            replace: /usr/local/include
+            regexp: '/usr/X11R6/include'
+          become: true
+          become_method: ansible.builtin.sudo
+          become_user: "{{ suckless_common_build_user }}"
+          when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+        - name: "Compile | Replace: X11LIB for {{ suckless_build_name }}" # noqa: no-handler
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/config.mk"
+            replace: /usr/local/lib
+            regexp: '/usr/X11R6/lib'
+          become: true
+          become_method: ansible.builtin.sudo
+          become_user: "{{ suckless_common_build_user }}"
+          when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+        - name: "Compile | Replace: X11LIB for {{ suckless_build_name }}" # noqa: no-handler
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/config.mk"
+            replace: /usr/local/include/freetype2
+            regexp: '/usr/include/freetype2'
+            
+          become: true
+          become_method: ansible.builtin.sudo
+          become_user: "{{ suckless_common_build_user }}"
+          when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+        - name: "Compile | Replace: CPPFLAGS for {{ suckless_build_name }}" # noqa: no-handler
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/config.mk"
+            replace: ''
+            regexp: '-D_DEFAULT_SOURE'
+          become: true
+          become_method: ansible.builtin.sudo
+          become_user: "{{ suckless_common_build_user }}"
+          when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+        - name: "Compile | Replace: CPPFLAGS for {{ suckless_build_name }}" # noqa: no-handler
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/config.mk"
+            replace: 'CC = cc'
+            regexp: '#CC = c99'
+          become: true
+          become_method: ansible.builtin.sudo
+          become_user: "{{ suckless_common_build_user }}"
+          when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+    - name: "Compile | Makefile replace: X11INC for {{ suckless_build_name }}" # noqa: no-handler
+      ansible.builtin.replace:
+        path: "{{ suckless_build_path }}/Makefile"
+        replace: /usr/local/include
+        regexp: '/usr/X11R6/include'
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+    - name: "Compile | Makefile replace: X11LIB for {{ suckless_build_name }}" # noqa: no-handler
+      ansible.builtin.replace:
+        path: "{{ suckless_build_path }}/Makefile"
+        replace: /usr/local/lib
+        regexp: '/usr/X11R6/lib'
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+    - name: "Compile | Makefile replace: freetype2 for {{ suckless_build_name }}" # noqa: no-handler
+      ansible.builtin.replace:
+        path: "{{ suckless_build_path }}/Makefile"
+        replace: /usr/local/include/freetype2
+        regexp: '/usr/include/freetype2'
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
+
+
+    - name: "Compile | Suckless stat config.def.h"
+      ansible.builtin.stat:
+        path: "{{ suckless_build_path }}/repo/config.def.h"
+      register: suckless_confdef_stat_reg
+
+    - name: "Compile | Copy: config.def.h config.h - {{ suckless_build_name }}" # noqa: no-handler
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      ansible.builtin.copy:
+        src: "{{ suckless_build_path }}/config.def.h"
+        dest: "{{ suckless_build_path }}/config.h"
+        mode: "0744"
+        owner: "{{ suckless_build_user }}"
+        group: "{{ suckless_build_user }}"
+        remote_src: true
+      when:
+        - suckless_confdef_stat_reg.stat.exists
+        - suckless_build_recompile or suckless_git_clone_reg.changed
+
+    - name: "Compile | Make - {{ suckless_build_name }}" # noqa: no-handler
+      become: true
+      become_method: ansible.builtin.sudo
+      become_user: "{{ suckless_common_build_user }}"
+      community.general.make:
+        chdir: "{{ suckless_build_path }}"
+      register: suckless_reg_make
+      when: suckless_build_recompile or suckless_git_clone_reg.changed
+
+    - name: "Compile | Make install - {{ suckless_build_name }}" # noqa: no-handler
+      community.general.make:
+        chdir: "{{ suckless_build_path }}"
+        target: install
+      when: 
+        - suckless_build_recompile or suckless_git_clone_reg.changed
+        - suckless_reg_make.changed
+
+  rescue:
+    - name: "Compile | Error - {{ suckless_build_name }}"
+      ansible.builtin.debug:
+        msg: "Fail"
+      changed_when: true
+      notify:
+        - send failed message

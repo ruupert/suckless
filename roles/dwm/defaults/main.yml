@@ -1,0 +1,10 @@
+---
+dwm_recompile: false
+dwm_repo: "https://git.suckless.org/dwm"
+dwm_branch: "6.2"
+dwm_patches:
+  - "files/dwm/dwm-pertag-6.2.diff"
+  - "files/dwm/dwm-canfocusfloating-20210724-b914109.diff"
+  - "files/dwm/dwm-dragmfact-6.2.diff"
+  - "files/dwm/dwm-tilewide-6.3.diff"
+  - "files/dwm/dwm-rules.diff"

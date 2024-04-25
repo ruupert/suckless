@@ -1,0 +1,5 @@
+---
+tabbed_recompile: false
+tabbed_repo: "https://git.suckless.org/tabbed"
+tabbed_branch: "0.8"
+tabbed_patches: []

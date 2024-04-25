@@ -1,0 +1,49 @@
+- name: "FreeBSD | Dmenu"
+  block:
+    - name: "FreeBSD | Dmenu | Create {{ suckless_common_build_home }}/{{ role_name }}" # noqa: name[template]
+      ansible.builtin.file:
+        name: "{{ suckless_common_build_home }}/{{ role_name }}"
+        state: directory
+        mode: "0700"
+        owner: "{{ suckless_common_build_user }}"
+        group: "{{ suckless_common_build_group }}"
+
+    - name: "FreeBSD | Dmenu | Dependencies"
+      community.general.pkgng:
+        pkg:
+          - freetype2
+          - git
+          - glib
+          - libX11
+          - libXft
+          - libXinerama
+          - libxcb
+          - ncurses
+          - patch
+          - sudo
+          - ticcutils
+          - webkit2-gtk4
+          - xorg
+        state: present
+
+    - name: "FreeBSD | Dmenu | Compile"
+      vars:
+        suckless_build_name: "{{ role_name }}"
+        suckless_build_repo: "{{ dmenu_repo }}"
+        suckless_build_branch: "{{ dmenu_branch }}"
+        suckless_build_patches: "{{ dmenu_patches }}"
+        suckless_build_patch: "{{ dmenu_patch }}"
+        suckless_build_path: "{{ suckless_common_build_home }}/{{ role_name }}/repo"
+        suckless_build_user: "{{ suckless_common_build_user }}"
+        suckless_build_group: "{{ suckless_common_build_group }}"
+        suckless_build_recompile: "{{ dmenu_recompile }}"
+      ansible.builtin.include_tasks:
+        file: ../../common/tasks/Compile.yml
+
+  rescue:
+    - name: "FreeBSD | Dmenu | Fail"
+      ansible.builtin.debug:
+        msg: "Fail"
+      changed_when: true
+      # notify:
+      #   - send failed message

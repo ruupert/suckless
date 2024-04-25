@@ -1,0 +1,6 @@
+---
+slstatus_recompile: false
+slstatus_name: "slstatus"
+slstatus_repo: "https://git.suckless.org/slstatus"
+slstatus_branch: "master"
+slstatus_patches: []

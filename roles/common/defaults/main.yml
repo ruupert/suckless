@@ -1,0 +1,4 @@
+---
+suckless_common_build_user: "{{ build_user | default('build') }}"
+suckless_common_build_group: "{{ build_group | default(suckless_common_build_user) }}"
+suckless_common_build_home: "{{ build_home | default('/opt/build') }}"

@@ -1,0 +1,5 @@
+---
+wmname_recompile: false
+wmname_repo: "https://git.suckless.org/wmname"
+wmname_branch: "0.1"
+wmname_patches: []
