@@ -23,6 +23,8 @@
           - libxinerama-dev
           - libgcr-3-dev
           - libwebkit2gtk-4.0-dev
+          - gcc
+          - acl
           - libglib2.0-dev
         state: present
 

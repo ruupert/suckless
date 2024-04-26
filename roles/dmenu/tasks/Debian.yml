@@ -10,6 +10,7 @@
 
     - name: "Debian | Dmenu | Dependencies"
       ansible.builtin.apt:
+        update_cache: true
         pkg:
           - sudo
           - xorg
@@ -23,6 +24,8 @@
           - libxinerama-dev
           - libgcr-3-dev
           - libwebkit2gtk-4.0-dev
+          - gcc
+          - acl
           - libglib2.0-dev
         state: present
 

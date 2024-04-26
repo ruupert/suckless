@@ -1,0 +1,14 @@
+---
+- name: "Dwm"
+  hosts: all
+  become: true
+  roles:
+    - { role: dwm }
+    - { role: dmenu }
+    - { role: dwmstatus }
+    - { role: slock }
+    - { role: slstatus }
+    - { role: st }
+    - { role: surf }
+    - { role: tabbed }
+    - { role: wmname }

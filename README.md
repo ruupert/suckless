@@ -29,4 +29,6 @@ Recompiling having -e "act=recompile" set in play.
 Dependencies
 ------------
 
-    handlers
+collections:
+  - community.general
+  - ansible.posix
