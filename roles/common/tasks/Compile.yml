@@ -142,6 +142,17 @@
       become_user: "{{ suckless_common_build_user }}"
       when: (suckless_build_recompile or suckless_git_clone_reg.changed) and ansible_distribution == "FreeBSD"
 
+    - name: "Compile | Dwmstatus"
+      when:
+        - "role_name == 'dwmstatus'"
+        - (suckless_build_recompile or suckless_git_clone_reg.changed)
+        - suckless_build_timezone is defined
+      block:
+        - name: "Compile | Set timezone"
+          ansible.builtin.replace:
+            path: "{{ suckless_build_path }}/dwmstatus.c"
+            replace: "{{ suckless_build_timezone }}"
+            regexp: 'Europe/Helsinki'
 
     - name: "Compile | Suckless stat config.def.h"
       ansible.builtin.stat:

@@ -37,6 +37,7 @@
         suckless_build_user: "{{ suckless_common_build_user }}"
         suckless_build_group: "{{ suckless_common_build_group }}"
         suckless_build_recompile: "{{ dwmstatus_recompile }}"
+        suckless_build_timezone: "{{ dwmstatus_timezone }}"
       ansible.builtin.include_tasks:
         file: ../../common/tasks/Compile.yml
 
