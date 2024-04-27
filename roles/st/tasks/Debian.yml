@@ -12,7 +12,6 @@
       ansible.builtin.apt:
         pkg:
           - sudo
-          - xorg
           - patch
           - git
           - make

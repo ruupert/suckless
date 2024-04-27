@@ -13,7 +13,6 @@
         update_cache: true
         pkg:
           - sudo
-          - xorg
           - patch
           - git
           - make

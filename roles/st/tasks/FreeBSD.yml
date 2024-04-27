@@ -23,7 +23,6 @@
           - sudo
           - ticcutils
           - webkit2-gtk4
-          - xorg
         state: present
 
     - name: "FreeBSD | St | Compile"
