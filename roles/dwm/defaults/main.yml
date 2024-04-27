@@ -8,3 +8,4 @@ dwm_patches:
   - "files/dwm/dwm-dragmfact-6.2.diff"
   - "files/dwm/dwm-tilewide-6.3.diff"
   - "files/dwm/dwm-rules.diff"
+  - "files/dwm/dwm-restartsig-20180523-6.2.diff"

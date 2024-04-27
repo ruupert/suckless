@@ -145,7 +145,7 @@
 
     - name: "Compile | Suckless stat config.def.h"
       ansible.builtin.stat:
-        path: "{{ suckless_build_path }}/repo/config.def.h"
+        path: "{{ suckless_build_path }}/config.def.h"
       register: suckless_confdef_stat_reg
 
     - name: "Compile | Copy: config.def.h config.h - {{ suckless_build_name }}" # noqa: no-handler
@@ -161,7 +161,7 @@
         remote_src: true
       when:
         - suckless_confdef_stat_reg.stat.exists
-        - suckless_build_recompile or suckless_git_clone_reg.changed
+        - (suckless_build_recompile or suckless_git_clone_reg.changed)
 
     - name: "Compile | Make - {{ suckless_build_name }}" # noqa: no-handler
       become: true

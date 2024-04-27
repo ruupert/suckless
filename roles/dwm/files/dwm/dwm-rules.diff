@@ -6,7 +6,7 @@
  	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 -	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 +	{ "mpv",     NULL,       NULL,       0,            1,           -1 },
-+	{ "Firefox",     NULL,       "Picture-in-Picture",       0,            0,           -1 },
++	{ NULL,     NULL,       "Picture-in-Picture",       0,            1,           -1 },
  };
  
  /* layout(s) */
