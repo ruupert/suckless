@@ -1,4 +1,5 @@
 ---
+dwmstatus_recompile: false
 dwmstatus_repo: "https://github.com/ruupert/dwmstatus.git"
 dwmstatus_branch: "main"
 dwmstatus_patches: []
