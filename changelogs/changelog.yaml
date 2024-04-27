@@ -1,2 +1,11 @@
 ---
-releases: {}
+releases:
+  1.0.0:
+    release_date: '2024-04-26'
+  1.0.1:
+    changes:
+      bugfixes:
+        - fixed issue with the patched config.def.h not being used.
+      minor_changes:
+        - added option to set timezone for dwmstatus role
+    release_date: '2024-04-27'
