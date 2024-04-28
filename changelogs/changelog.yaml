@@ -9,3 +9,10 @@ releases:
       minor_changes:
         - added option to set timezone for dwmstatus role
     release_date: '2024-04-27'
+  1.0.2:
+    changes:
+      bugfixes:
+        - apt update cache set to true for each role
+      minor_changes:
+        - does not install xorg as dependency, some might use wayland
+    release_date: '2024-04-28'

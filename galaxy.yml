@@ -1,13 +1,13 @@
 namespace: ruupert
 name: suckless
-version: 1.0.1
+version: 1.0.2
 readme: README.md
 authors:
   - Raul Becker
 description: Clones, patches, compiles and installs x11 suckless progs.
 license:
   - GPL-2.0-or-later
-tags: ['linux', 'freebsd', 'dwm', 'dmenu', 'st', 'dwmstatus', 'slstatus', 'surf', 'tabbed', 'wmname', 'slock']
+tags: ['dwm', 'dmenu', 'st', 'dwmstatus', 'slstatus', 'surf', 'tabbed', 'wmname', 'slock']
 dependencies:
   community.general: '>=1.5.4'
   ansible.posix: '>=8.6.0'
@@ -23,6 +23,7 @@ build_ignore:
   - ansible.cfg
   - Vagrantfile
   - setup.sh
+  - test.sh
   - requirements.yml
   - .ansible-lint
   - '*.tar.gz'

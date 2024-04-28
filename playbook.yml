@@ -1,46 +1,26 @@
 ---
-- name: "Debian per role"
-  hosts: all:!deb12all
-  become: true
-  roles:
-    - { role: dwm, when: "inventory_hostname == 'deb12dwm'" }
-    - { role: dwm, when: "inventory_hostname == 'deb12dwm'", vars: { act: 'recompile' } }
-    - { role: dmenu, when: "inventory_hostname == 'deb12dmenu'" }
-    - { role: dmenu, when: "inventory_hostname == 'deb12dmenu'", vars: { act: 'recompile' } }
-    - { role: dwmstatus, when: "inventory_hostname == 'deb12dwmstatus'" }
-    - { role: dwmstatus, when: "inventory_hostname == 'deb12dwmstatus'", vars: { act: 'recompile' } }
-    - { role: slock, when: "inventory_hostname == 'deb12slock'" }
-    - { role: slock, when: "inventory_hostname == 'deb12slock'", vars: { act: 'recompile' } }
-    - { role: slstatus, when: "inventory_hostname == 'deb12slstatus'" }
-    - { role: slstatus, when: "inventory_hostname == 'deb12slstatus'", vars: { act: 'recompile' } }
-    - { role: st, when: "inventory_hostname == 'deb12st'" }
-    - { role: st, when: "inventory_hostname == 'deb12st'", vars: { act: 'recompile' } }
-    - { role: surf, when: "inventory_hostname == 'deb12surf'" }
-    - { role: surf, when: "inventory_hostname == 'deb12surf'", vars: { act: 'recompile' } }
-    - { role: tabbed, when: "inventory_hostname == 'deb12tabbed'" }
-    - { role: tabbed, when: "inventory_hostname == 'deb12tabbed'", vars: { act: 'recompile' } }
-    - { role: wmname, when: "inventory_hostname == 'deb12wmname'" }
-    - { role: wmname, when: "inventory_hostname == 'deb12wmname'", vars: { act: 'recompile' } }
-
-- name: "Debian All"
-  hosts: deb12all
+- name: "Debian dwm"
+  hosts: "all:!localhost"
   become: true
   roles:
     - { role: dwm }
+    - { role: dwm, vars: { act: 'recompile' } }
+    - { role: dwm, vars: { rerun: 'true'} }
     - { role: dmenu }
+    - { role: dmenu, vars: { act: 'recompile' } }
+    - { role: dmenu, vars: { rerun: 'true'} }
     - { role: dwmstatus }
+    - { role: dwmstatus, vars: { act: 'recompile' } }
+    - { role: dwmstatus, vars: { rerun: 'true'} }
     - { role: slock }
+    - { role: slock, vars: { act: 'recompile' } }
+    - { role: slock, vars: { rerun: 'true'} }
     - { role: slstatus }
+    - { role: slstatus, vars: { act: 'recompile' } }
+    - { role: slstatus, vars: { rerun: 'true'} }
     - { role: st }
+    - { role: st, vars: { act: 'recompile' } }
+    - { role: st, vars: { rerun: 'true'} }
     - { role: surf }
-    - { role: tabbed }
-    - { role: wmname }
-    - { role: dwm, vars: { act: 'recompile' }  }
-    - { role: dmenu, vars: { act: 'recompile' }  }
-    - { role: dwmstatus, vars: { act: 'recompile' }  }
-    - { role: slock, vars: { act: 'recompile' }  }
-    - { role: slstatus, vars: { act: 'recompile' }  }
-    - { role: st, vars: { act: 'recompile' }  }
-    - { role: surf, vars: { act: 'recompile' }  }
-    - { role: tabbed, vars: { act: 'recompile' }  }
-    - { role: wmname, vars: { act: 'recompile' }  }
+    - { role: surf, vars: { act: 'recompile' } }
+    - { role: surf, vars: { rerun: 'true'} }

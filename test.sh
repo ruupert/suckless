@@ -7,4 +7,4 @@ python3 $VENVDIR/bin/activate
 pip3 install -r requirements.txt
 
 vagrant up --no-parallel
-vagrant destroy -f
+# vagrant destroy -f
