@@ -10,6 +10,7 @@
 
     - name: "FreeBSD | Tabbed | Dependencies"
       community.general.pkgng:
+        update_cache: true
         pkg:
           - freetype2
           - git

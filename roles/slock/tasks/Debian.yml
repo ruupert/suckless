@@ -10,6 +10,7 @@
 
     - name: "Debian | Slock | Dependencies"
       ansible.builtin.apt:
+        update_cache: true
         pkg:
           - sudo
           - patch

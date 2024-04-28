@@ -10,6 +10,7 @@
 
     - name: "Debian | St | Dependencies"
       ansible.builtin.apt:
+        update_cache: true
         pkg:
           - sudo
           - patch
