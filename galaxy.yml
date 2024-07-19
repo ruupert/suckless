@@ -7,7 +7,7 @@ authors:
 description: Clones, patches, compiles and installs x11 suckless progs.
 license:
   - GPL-2.0-or-later
-tags: ['dwm', 'dmenu', 'st', 'dwmstatus', 'slstatus', 'surf', 'tabbed', 'wmname', 'slock']
+tags: ['application', 'dwm', 'dmenu', 'st', 'dwmstatus', 'slstatus', 'surf', 'tabbed', 'wmname', 'slock']
 dependencies:
   community.general: '>=1.5.4'
   ansible.posix: '>=8.6.0'
