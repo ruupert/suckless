@@ -1,4 +1,6 @@
 ---
+dwmstatus_act: "{{ act | default('reconfigure') }}"
+dwmstatus_flush_handlers: "{{ flush_handlers | default(true) }}"
 dwmstatus_recompile: false
 dwmstatus_repo: "https://github.com/ruupert/dwmstatus.git"
 dwmstatus_branch: "main"

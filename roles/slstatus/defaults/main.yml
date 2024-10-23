@@ -1,4 +1,6 @@
 ---
+slstatus_act: "{{ act | default('reconfigure') }}"
+slstatus_flush_handlers: "{{ flush_handlers | default(true) }}"
 slstatus_recompile: false
 slstatus_name: "slstatus"
 slstatus_repo: "https://git.suckless.org/slstatus"

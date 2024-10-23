@@ -1,4 +1,6 @@
 ---
+surf_act: "{{ act | default('reconfigure') }}"
+surf_flush_handlers: "{{ flush_handlers | default(true) }}"
 surf_recompile: false
 surf_repo: "https://git.suckless.org/surf"
 surf_branch: "surf-webkit2"

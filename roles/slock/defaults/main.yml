@@ -1,4 +1,6 @@
 ---
+slock_act: "{{ act | default('reconfigure') }}"
+slock_flush_handlers: "{{ flush_handlers | default(true) }}"
 slock_recompile: false
 slock_name: "slock"
 slock_repo: "https://git.suckless.org/slock"

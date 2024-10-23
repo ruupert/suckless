@@ -1,25 +1,30 @@
 ---
-- name: "Include vars"
-  ansible.builtin.include_vars:
-    file: ../../common/defaults/main.yml
-
-- name: "Include build user"
-  vars:
-    suckless_build_user: "{{ suckless_common_build_user }}"
-    suckless_build_group: "{{ suckless_common_build_group }}"
-    suckless_build_home: "{{ suckless_common_build_home }}"
-  ansible.builtin.include_tasks:
-    file: ../../common/tasks/User.yml
-
-- name: "Recompile"
-  ansible.builtin.set_fact:
-    dwm_recompile: true
-  when: 
-    - act is defined
-    - act == "recompile"
-
-- name: "Debian"
-  ansible.builtin.include_tasks:
-    file: "{{ ansible_distribution }}.yml"
+- name: "dwm"
+  tags:
+    - dwm
   when:
-    - ansible_distribution == "Debian" or ansible_distribution == "FreeBSD"
+    - dwm_act != 'cert'
+  block:
+    - name: "Include vars"
+      ansible.builtin.include_vars:
+        file: ../../common/defaults/main.yml
+
+    - name: "Include build user"
+      vars:
+        suckless_build_user: "{{ suckless_common_build_user }}"
+        suckless_build_group: "{{ suckless_common_build_group }}"
+        suckless_build_home: "{{ suckless_common_build_home }}"
+      ansible.builtin.include_tasks:
+        file: ../../common/tasks/User.yml
+
+    - name: "Recompile"
+      ansible.builtin.set_fact:
+        dwm_recompile: true
+      when: 
+        - dwm_act == "recompile"
+
+    - name: "Debian"
+      ansible.builtin.include_tasks:
+        file: "{{ ansible_distribution }}.yml"
+      when:
+        - ansible_distribution == "Debian" or ansible_distribution == "FreeBSD"

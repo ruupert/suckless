@@ -1,4 +1,6 @@
 ---
+st_act: "{{ act | default('reconfigure') }}"
+st_flush_handlers: "{{ flush_handlers | default(true) }}"
 st_recompile: false
 st_repo: "https://git.suckless.org/st"
 st_branch: "0.8.5"

@@ -1,4 +1,6 @@
 ---
+wmname_act: "{{ act | default('reconfigure') }}"
+wmname_flush_handlers: "{{ flush_handlers | default(true) }}"
 wmname_recompile: false
 wmname_repo: "https://git.suckless.org/wmname"
 wmname_branch: "0.1"

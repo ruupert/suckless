@@ -1,4 +1,6 @@
 ---
+dwm_act: "{{ act | default('reconfigure') }}"
+dwm_flush_handlers: "{{ flush_handlers | default(true) }}"
 dwm_recompile: false
 dwm_repo: "https://git.suckless.org/dwm"
 dwm_branch: "6.2"

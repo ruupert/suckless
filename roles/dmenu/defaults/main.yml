@@ -1,4 +1,6 @@
 ---
+dmenu_act: "{{ act | default('reconfigure') }}"
+dmenu_flush_handlers: "{{ flush_handlers | default(true) }}"
 dmenu_recompile: false
 dmenu_repo: "https://git.suckless.org/dmenu"
 dmenu_branch: "master"

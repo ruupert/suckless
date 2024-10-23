@@ -1,4 +1,6 @@
 ---
+tabbed_act: "{{ act | default('reconfigure') }}"
+tabbed_flush_handlers: "{{ flush_handlers | default(true) }}"
 tabbed_recompile: false
 tabbed_repo: "https://git.suckless.org/tabbed"
 tabbed_branch: "0.8"
