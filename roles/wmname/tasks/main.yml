@@ -4,6 +4,7 @@
     - wmname
   when:
     - wmname_act != 'cert'
+    - wmname_act != 'nft'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

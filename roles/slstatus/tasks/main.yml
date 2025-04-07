@@ -4,6 +4,7 @@
     - slstatus
   when:
     - slstatus_act != 'cert'
+    - slstatus_act != 'nft'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

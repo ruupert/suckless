@@ -4,6 +4,7 @@
     - tabbed
   when:
     - tabbed_act != 'cert'
+    - tabbed_act != 'nft'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

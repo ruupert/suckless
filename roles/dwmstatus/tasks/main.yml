@@ -4,6 +4,7 @@
     - dwmstatus
   when:
     - dwmstatus_act != 'cert'
+    - dwmstatus_act != 'nft'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

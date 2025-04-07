@@ -4,6 +4,7 @@
     - dmenu
   when:
     - dmenu_act != 'cert'
+    - dmenu_act != 'nft'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:
