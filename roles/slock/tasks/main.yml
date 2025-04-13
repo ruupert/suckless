@@ -21,7 +21,7 @@
     - name: "Recompile"
       ansible.builtin.set_fact:
         slock_recompile: true
-      when: 
+      when:
         - slock_act == "recompile"
 
     - name: "Debian"

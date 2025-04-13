@@ -21,7 +21,7 @@
     - name: "Recompile"
       ansible.builtin.set_fact:
         tabbed_recompile: true
-      when: 
+      when:
         - tabbed_act == "recompile"
 
     - name: "Debian"

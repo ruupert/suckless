@@ -21,7 +21,7 @@
     - name: "Recompile"
       ansible.builtin.set_fact:
         dmenu_recompile: true
-      when: 
+      when:
         - dmenu_act == "recompile"
 
     - name: "Debian"

@@ -21,7 +21,7 @@
     - name: "Recompile"
       ansible.builtin.set_fact:
         surf_recompile: true
-      when: 
+      when:
         - surf_act == "recompile"
 
     - name: "Debian"

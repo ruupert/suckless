@@ -21,7 +21,7 @@
     - name: "Recompile"
       ansible.builtin.set_fact:
         dwm_recompile: true
-      when: 
+      when:
         - dwm_act == "recompile"
 
     - name: "Debian"
