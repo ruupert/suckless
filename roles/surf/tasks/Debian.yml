@@ -9,9 +9,9 @@
         group: "{{ suckless_common_build_group }}"
 
     - name: "Debian | Surf | Dependencies"
-      ansible.builtin.apt:
-        update_cache: true
-        pkg:
+      vars:
+        pkg_state: present
+        pkg_names:
           - sudo
           - patch
           - git
@@ -26,7 +26,8 @@
           - gcc
           - acl
           - libglib2.0-dev
-        state: present
+      ansible.builtin.include_role:
+        name: ruupert.helpers.pkg
 
     - name: "Debian | Surf | Compile"
       vars:

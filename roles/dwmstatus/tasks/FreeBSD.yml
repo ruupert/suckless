@@ -9,8 +9,9 @@
         group: "{{ suckless_common_build_group }}"
 
     - name: "FreeBSD | Dwmstatus | Dependencies"
-      community.general.pkgng:
-        pkg:
+      vars:
+        pkg_state: present
+        pkg_names:
           - freetype2
           - git
           - glib
@@ -23,7 +24,8 @@
           - sudo
           - ticcutils
           - webkit2-gtk4
-        state: present
+      ansible.builtin.include_role:
+        name: ruupert.helpers.pkg
 
     - name: "FreeBSD | Dwmstatus | Compile"
       vars:
