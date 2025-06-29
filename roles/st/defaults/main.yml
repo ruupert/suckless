@@ -10,3 +10,4 @@ st_patches:
       - "files/st/st-scrollback-mouse-20191024-a2c479c.diff"
       - "files/st/st-scrollback-mouse-altscreen-20200416-5703aa0.diff"
       - "files/st/st-clipboard-0.8.3.diff"
+      - "files/st/st-dynamic-cursor-color-0.9.diff"
