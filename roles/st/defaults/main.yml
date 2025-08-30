@@ -11,3 +11,4 @@ st_patches:
       - "files/st/st-scrollback-mouse-altscreen-20200416-5703aa0.diff"
       - "files/st/st-clipboard-0.8.3.diff"
       - "files/st/st-dynamic-cursor-color-0.9.diff"
+      - "files/st/st-expected-anysize-0.9.diff"
