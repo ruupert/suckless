@@ -5,6 +5,7 @@
   when:
     - surf_act != 'cert'
     - surf_act != 'nft'
+    - surf_act != 'clean'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

@@ -5,6 +5,7 @@
   when:
     - slock_act != 'cert'
     - slock_act != 'nft'
+    - slock_act != 'clean'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:

@@ -5,6 +5,7 @@
   when:
     - tabbed_act != 'cert'
     - tabbed_act != 'nft'
+    - tabbed_act != 'clean'
   block:
     - name: "Include vars"
       ansible.builtin.include_vars:
